@@ -4,6 +4,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+button{
+  padding: 5px;
+  margin: 4px;
+}
 .App{
   width: 400px;
   background: transparent;
