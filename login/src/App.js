@@ -1,89 +1,9 @@
 import React, { useState } from 'react';
-import { useLocation,useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import Form from 'react-bootstrap/Form';
 import { Dropdown } from 'react-bootstrap';
 
-export function Calculator() {
-  const navigate = useNavigate();
-  const [input, setInput] = useState('');
-  const [result, setResult] = useState(0);
-  
-  const handleNumberClick = (number) => {
-    setInput((prevInput) => prevInput + number);
-  };
-
-  const handleSubmit = (e) => {
-    setInput(e.target.value);
-  };
-
-  const handleEvaluate = () => {
-    try {
-      setResult(eval(input));
-    } catch (error) {
-      setResult('Invalid expression');
-    }
-  };
-  function trans()
-  {
-    setInput('');
-    setResult(0);
-  }
-  return (
-    <div>
-      <h1>Simple Calculator</h1>
-      <Form.Control type="text" value={input} onChange={handleSubmit} /><br />
-        
-      <button  onClick={() => handleNumberClick(1)}>1</button>
-      <button  onClick={() => handleNumberClick(2)}>2</button>
-      <button  onClick={() => handleNumberClick(3)}>3</button>
-      <button  onClick={() => handleNumberClick(4)}>4</button>
-      <button  onClick={() => handleNumberClick(5)}>5</button><br/>
-
-      <button  onClick={() => handleNumberClick(6)}>6</button>
-      <button  onClick={() => handleNumberClick(7)}>7</button>
-      <button  onClick={() => handleNumberClick(8)}>8</button>
-      <button  onClick={() => handleNumberClick(9)}>9</button>
-      <button  onClick={() => handleNumberClick(0)}>0</button><br/>
-
-      <button  onClick={() => handleNumberClick('+')}>+</button>
-      <button  onClick={() => handleNumberClick('-')}>-</button>
-      <button  onClick={() => handleNumberClick('*')}>*</button>
-      <button  onClick={() => handleNumberClick('/')}>/</button>
-      <button  onClick={() => trans()}>clr</button><br/>
-
-      <h4>Result: {result}</h4>
-      <button className="btn btn-success" onClick={handleEvaluate}>Evaluate</button><br/><br/>
-      <button className="btn btn-success" onClick={() => navigate('/')}>logout</button>
-    </div>
-  );
-}
-export function Dashboard() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { formData } = location.state;
-
-  return (
-    <div>
-      <h1>Hi {formData.username}</h1>
-      <h1>This is your password - {formData.password}</h1>
-      <h1>Your Gender - {formData.gender}</h1>
-      <h1>Your are from {formData.country}</h1>
-      <h1>Your interests are:</h1>
-      <ol>
-        {formData.interests.map((interest) => (
-          <li><h1>{interest}</h1></li>
-        ))}
-      </ol>
-      <br/>
-      <p>If you want to use the calculator, then click on this button<button className="btn btn-success" 
-      onClick={()=> navigate('/Calculator',{state:{}})}>calculator</button></p><br/>
-      <button className="btn btn-success" 
-      onClick={() => navigate('/', { state: { username: formData.username } })}>log out</button><br/><br/>
-      
-    </div>
-  );
-}
 
 export function App() {
   const [formData, setFormData] = useState({
